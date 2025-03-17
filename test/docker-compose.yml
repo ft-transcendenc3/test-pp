@@ -1,0 +1,79 @@
+
+
+networks:
+  groups:
+    driver: bridge
+
+volumes:
+  postgres:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: './postgres'
+  backend:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: './backend'
+  frontend-volume:
+    driver: local
+    driver_opts:
+      o: "bind"
+      type: "none"
+      device: "./frontend"
+
+services:
+  postgres:
+    container_name: postgres
+    image: postgres:13
+    env_file:
+      - .env
+    volumes:
+      - /var/lib/postgresql/data
+
+    networks:
+      - groups
+    restart: unless-stopped
+
+  backend:
+    image: python:3.11
+    container_name: backend
+    pull_policy: build
+    build: ./backend
+    env_file:
+      - .env
+    volumes:  
+      - ./backend:/files
+    restart: unless-stopped
+    networks:
+      - groups
+    depends_on:
+      - postgres
+  nginx:
+    container_name : nginx
+    image: nginx
+    build: ./nginx
+    pull_policy: build
+    ports:
+      - "8000:80"
+    networks:
+      - groups
+    depends_on:
+      - backend
+      - frontend
+
+  frontend:
+    build: ./frontend
+    image: frontend
+    container_name: frontend
+    depends_on:
+      - backend
+    pull_policy: build
+    networks:
+      - groups
+    init: true
+    volumes:
+      - "./frontend/:/var/app"
+

@@ -1,24 +1,16 @@
-# FROM node:18
+FROM node:18
 
-# WORKDIR /usr/src/app/
-
-# COPY ./gameFront/package.json ./gameFront/package-lock.json ./
-
-# RUN npm install --legacy-peer-deps 
-
-# RUN npm install -g live-server
-
-# COPY . .  
-
-# CMD ["live-server", "--host=0.0.0.0", "--port=5173", "--watch=."]
+WORKDIR /var/app
 
 
+COPY ./tools/init.sh /bin/init.sh
 
-FROM nginx:1.27.1-bookworm
+RUN chmod +x /bin/init.sh
 
-# Copy the frontend files directly to Nginx's serving directory
-COPY ./gameFront /usr/share/nginx/html
+RUN npm init -y && \
+npm install express
 
-EXPOSE 80
 
-CMD ["nginx", "-g", "daemon off;"]
+ENTRYPOINT ["/bin/init.sh"]
+
+CMD ["node", "server.js"]

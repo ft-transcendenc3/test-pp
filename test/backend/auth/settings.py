@@ -48,6 +48,7 @@ CORS_ALLOW_ALL_ORIGINS = True
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -58,7 +59,6 @@ INSTALLED_APPS = [
     'game',
     'channels',
     'corsheaders',
-    # 'daphne',
     'rest_framework',
     'rest_framework_simplejwt',
 ]
