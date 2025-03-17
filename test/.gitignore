@@ -1,0 +1,13 @@
+file.tldr
+TestCases.json
+.env
+postgres
+backend/auth_app/__pycache__
+backend/auth_app/api/__pycache__
+backend/auth_app/game/__pycache__
+backend/auth_app/migrations/__pycache__
+backend/media
+
+frontend/resources
+frontend/node_modules
+frontend/.vite/deps

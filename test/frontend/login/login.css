@@ -1,0 +1,118 @@
+.auth-container {
+  display: flex;
+  width: 800px;
+  height: 600px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transition: transform 0.5s ease;
+
+  &.swap {
+    .signup-side {
+      background-color: white;
+      color: #8b0000;
+    }
+
+    .signin-side {
+      background-color: #8b0000;
+    }
+  }
+  .signup-side,
+  .signin-side {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    transition: all 0.5s ease;
+  }
+
+  .signup-side {
+    background-color: #8b0000;
+    color: white;
+  }
+
+  .signin-side {
+    background-color: white;
+  }
+
+  .form-container {
+    width: 100%;
+  }
+
+  input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+
+  .submit-btn {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 8px;
+    background-color: #8b0000;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      opacity: 0.9;
+    }
+
+    &:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
+    }
+  }
+
+  .signup-btn {
+    background-color: white;
+    color: #8b0000;
+    border: 2px solid white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .alternative-signup {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .alternative-btn {
+    width: 48%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+  }
+
+  .google-btn {
+    background-color: #4285f4;
+  }
+
+  .intra-btn {
+    background-color: #000;
+  }
+
+  .error-message {
+    color: red;
+    font-size: 0.8em;
+    margin-top: 10px;
+    text-align: center;
+    display: none;
+  }
+
+  .hidden {
+    display: none;
+  }
+}

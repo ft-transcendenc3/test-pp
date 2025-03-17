@@ -1,0 +1,115 @@
+.header {
+    height: 80px;
+    background-color: #1a0f14;
+    border-bottom: 1px solid #3d232b;
+    padding: 0 30px;
+    display: flex;
+    align-items: center;
+    z-index: 100;
+}
+
+.header .logo {
+    font-size: 28px;
+    font-weight: 600;
+    color: #c8465f;
+    letter-spacing: 1px;
+}
+
+/* Error Content */
+.error-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.error-code {
+    font-size: 120px;
+    font-weight: 700;
+    color: #c8465f;
+    margin-bottom: 20px;
+    text-shadow: 0 0 15px rgba(200, 70, 95, 0.3);
+}
+
+.error-message {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 30px;
+    color: #e6d0d6;
+}
+
+.error-description {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    color: #8c4b5a;
+}
+
+/* Reasons Section */
+.reasons-container {
+    background-color: #2a181e;
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 40px;
+    text-align: left;
+    width: 100%;
+    max-width: 600px;
+    border: 1px solid #3d232b;
+}
+
+.reasons-title {
+    color: #c8465f;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.reasons-list {
+    list-style-type: none;
+}
+
+.reasons-list li {
+    margin-bottom: 12px;
+    padding-left: 25px;
+    position: relative;
+    color: #e6d0d6;
+}
+
+.reasons-list li::before {
+    content: "\f071";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    color: #8c4b5a;
+}
+
+/* Home Button */
+.home-button {
+    display: inline-block;
+    background-color: #c8465f;
+    color: #e6d0d6;
+    padding: 14px 30px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.home-button:hover {
+    background-color: #a73d53;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(200, 70, 95, 0.3);
+}
+
+.home-button i {
+    margin-right: 10px;
+}

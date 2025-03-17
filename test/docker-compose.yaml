@@ -1,0 +1,132 @@
+# services:
+
+#   postgres:
+#     container_name: postgres
+#     image: postgres:latest
+#     env_file:
+#       - .env
+#     volumes:
+#       - ./postgres:/var/lib/postgresql/data
+#     ports:
+#         - 5432:5432
+#     networks:
+#       - groups
+#     restart: unless-stopped
+
+#   backend:
+#     image: python:3.11
+#     container_name: backend
+#     working_dir: /app
+#     command: >
+#       sh -c "pip install --upgrade pip &&
+#             pip install --no-cache-dir -r requirements.txt &&
+#             python manage.py migrate &&
+#             watchfiles 'daphne -b 0.0.0.0 -p 8000 auth.asgi:application'"
+
+#     env_file:
+#       - .env
+#     ports:
+#       - 8000:8000
+#     volumes:  
+#       - ./backend:/app
+#     restart: unless-stopped
+#     networks:
+#       - groups
+#     depends_on:
+#       - postgres
+
+#   front:
+#     build: ./frontend
+#     image: front
+#     container_name: front
+#     ports:
+#       - "5173:5173"
+#     networks:
+#       - groups
+#     volumes:
+#       - ./frontend:/usr/src/app
+#       - /usr/src/app/node_modules  # Persist node_modules inside the container
+#     init: true
+#     restart: on-failure
+    
+# networks:
+#   groups:
+#     driver: bridge
+
+# volumes:
+#   postgres:
+#     driver: local
+#     driver_opts:
+#       type: 'none'
+#       o: 'bind'
+#       device: './postgres'
+#   backend:
+#     driver: local
+#     driver_opts:
+#       type: 'none'
+#       o: 'bind'
+#       device: './backend'
+
+
+services:
+  postgres:
+    container_name: postgres
+    image: postgres:latest
+    env_file:
+      - .env
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    networks:
+      - groups
+    restart: unless-stopped
+
+  backend:
+    image: python:3.11
+    container_name: backend
+    working_dir: /app
+    command: >
+      sh -c "pip install --upgrade pip &&
+             pip install --no-cache-dir -r requirements.txt &&
+             python manage.py migrate &&
+             watchfiles 'daphne -b 0.0.0.0 -p 8000 auth.asgi:application'"
+    env_file:
+      - .env
+    ports:
+      - 8000:8000
+    volumes:  
+      - ./backend:/app
+    restart: unless-stopped
+    networks:
+      - groups
+    depends_on:
+      - postgres
+
+  front:
+    build: ./frontend
+    image: front
+    container_name: front
+    ports:
+      - "80:80"
+    networks:
+      - groups
+    restart: on-failure
+
+networks:
+  groups:
+    driver: bridge
+
+volumes:
+  postgres:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: './postgres'
+  backend:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: './backend'

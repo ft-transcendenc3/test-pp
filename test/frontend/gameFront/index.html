@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="game.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pong</title>
+    <style type="module" src="./index.css"></style>
+</head>
+<body id="body">
+    <!-- <h1>Pong Game</h1> -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "./node_modules/three/build/three.module.js",
+                "three/examples/": "./node_modules/three/examples/"
+            }
+        }
+        </script>
+    <script type='module' src="./game.js"></script>
+    <div id="waiting-screen">Waiting for opponent...</div>
+</body>
+</html>
